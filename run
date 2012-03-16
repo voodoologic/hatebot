@@ -1,0 +1,20 @@
+#!/bin/sh
+##
+## Wrapper for Hubot startup
+##
+
+HUBOT="/home/oldbones/Rails/hatebot/bin/hubot"
+NAME="hatebot"
+ADAPTER="faye"
+OPTS="--name ${NAME} --adapter ${ADAPTER}"
+
+export HUBOT_FAYE_SERVER="http://localhost"
+export HUBOT_FAYE_PORT="9292"
+export HUBOT_FAYE_PATH="/faye"
+export HUBOT_FAYE_ROOM="/hate_speech/new"
+export HUBOT_FAYE_PASSWORD="hatersgonnahateJ2fe3SoccbV5u1l"
+  
+until ${HUBOT} ${OPTS}; do
+     echo "Hubot crashed with exit code $?. Restarting." >&2
+     sleep 5
+done
